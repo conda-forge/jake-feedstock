@@ -12,36 +12,34 @@ build:
   number: 0
   noarch: python
   entry_points:
-    - jake = jake.__main__:main
-  script: {{ PYTHON }} -m pip install . -vv
+    - jake = jake.app:main
+  script:
+    - {{ PYTHON }} -c '__import__("os").unlink("pyproject.toml")'
+    - {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
     - python >=3.6
   run:
-    - certifi >=2020.11.8
-    - chardet >=3.0.4
-    - click >=7.1.2,<8.0.0
-    - colorama >=0.4.3
-    - idna >=2.10
-    - lxml >=4.6.3
-    - polling >=0.3.1
-    - pyfiglet >=0.8.post1
+    - click >=8.0.1,<9.0.0
+    - colorama >=0.4.4,<0.5.0
+    - cyclonedx-python-lib >=0.10.2,<0.11.0
+    - ossindex-lib >=0.2.1,<0.3.0
+    - polling2 >=0.5.0,<0.6.0
+    - pyfiglet >=0.8.post1,<0.9
     - python >=3.6
-    - pyyaml >=5.4.1
-    - requests >=2.25.0
-    - termcolor >=1.1.0
-    - terminaltables >=3.1.0
-    - tinydb >=3.15.2
-    - typing-extensions >=3.10.0.0
-    - urllib3 >=1.26.6
-    - yaspin >=0.16.0
+    - pyyaml >=5.4.1,<6.0.0
+    - requests >=2.26.0,<3.0.0
+    - termcolor >=1.1.0,<2.0.0
+    - terminaltables >=3.1.0,<4.0.0
+    - tinydb >=4.5.1,<5.0.0
+    - yaspin >=2.1.0,<3.0.0
+
 
 test:
   imports:
     - jake
-    - jake.audit
   commands:
     - pip check
     - jake --version
