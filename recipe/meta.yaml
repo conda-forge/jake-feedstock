@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jake/jake-{{ version }}.tar.gz
-  sha256: 60685d4f01e5ce8c4d61bac9c780ecd0c1488651353b9135afbfd743f41c9d02
+  sha256: 9568f10f36c2f7e66951f0e81a8602f49ddbf854b565d6b641a959da3ab26eb3
 
 build:
   number: 0
