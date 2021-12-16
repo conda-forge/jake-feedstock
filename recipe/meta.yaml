@@ -1,4 +1,4 @@
-{% set version = "1.2.0" %}
+{% set version = "1.2.2" %}
 
 package:
   name: jake
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jake/jake-{{ version }}.tar.gz
-  sha256: d5691e8da16b0f807a5ecab03464309c7aa974fd640e5914dda8eb8023b5ee57
+  sha256: 9568f10f36c2f7e66951f0e81a8602f49ddbf854b565d6b641a959da3ab26eb3
 
 build:
   number: 0
@@ -15,6 +15,9 @@ build:
     - jake = jake.app:main
   script:
     - {{ PYTHON }} -m pip install . -vv
+    - |-
+      {{ PYTHON }} -c "(__import__('pathlib').Path(__import__('site').getsitepackages()[0]) / 'LICENSE').unlink()"
+
 
 requirements:
   host:
@@ -24,19 +27,17 @@ requirements:
   run:
     - python >=3.6
     # these get translated from ~^ to concrete values in poetry-generated setup.py
-    - click >=8.0.1,<9.0.0
-    - cyclonedx-python-lib >=0.12.0,<0.13.0
-    - ossindex-lib >=0.2.1,<0.3.0
-    - polling2 >=0.5.0,<0.6.0
-    - pyfiglet >=0.8.post1,<0.9
-    - pyyaml >=5.4.1,<6.0.0
-    - requests >=2.26.0,<3.0.0
-    - rich >=10.15.2,<11.0.0
-    - tinydb >=4.5.1,<5.0.0
+    - cyclonedx-python-lib >=0.12.3
+    - ossindex-lib >=0.2.1
+    - polling2 >=0.5.0
+    - pyfiglet >=0.8.post1
+    - requests >=2.25.1,<3
+    - rich >=10.15.2
 
 test:
   imports:
     - jake
+    - jake.app
   commands:
     - pip check
     - jake --version
