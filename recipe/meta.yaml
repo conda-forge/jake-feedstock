@@ -15,6 +15,9 @@ build:
     - jake = jake.app:main
   script:
     - {{ PYTHON }} -m pip install . -vv
+    - |-
+      {{ PYTHON }} -c "(__import__('pathlib').Path(__import__('site').getsitepackages()[0]) / 'LICENSE').unlink()"
+
 
 requirements:
   host:
