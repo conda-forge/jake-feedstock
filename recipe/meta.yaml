@@ -42,6 +42,8 @@ test:
     - pip check
     - jake --version
     - jake --help
+    # TODO: see https://github.com/sonatype-nexus-community/jake/issues/66
+    - conda list --explicit | jake sbom -t CONDA
   requires:
     - pip
 
