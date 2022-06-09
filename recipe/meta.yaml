@@ -1,4 +1,4 @@
-{% set version = "2.0.0" %}
+{% set version = "2.1.1" %}
 
 package:
   name: jake
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jake/jake-{{ version }}.tar.gz
-  sha256: c94fa7dac0c0c854ad5b027a259a4732a9673d8b592eeb787e0391ae1880b2f3
+  sha256: b2295f82463397bb67592d1411cfb807a329bc1ae0836b8c6a6f7caaf6fa0452
 
 build:
   number: 0
