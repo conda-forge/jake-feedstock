@@ -14,7 +14,7 @@ build:
   entry_points:
     - jake = jake.app:main
   script:
-    - {{ PYTHON }} -m pip install . -vv
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     - |-
       {{ PYTHON }} -c "(__import__('pathlib').Path(__import__('site').getsitepackages()[0]) / 'LICENSE').unlink()"
 
@@ -22,19 +22,19 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python >=3.7
     - poetry-core >=1.0.0
   run:
-    - python >=3.6
+    - python >=3.7
     # these get translated from ~^ to concrete values in poetry-generated setup.py
     - cyclonedx-bom >=3.0.0,<4.0.0
     - ossindex-lib >=1.0.0,<2.0.0
     - polling2 >=0.5.0,<0.6.0
     - pyfiglet >=0.7.6,<1.0.0
-    - requests >=2.20.0,<3.0.0
+    - requests >=2.31.0,<3.0.0
     - rich >=10.10.0,<11.0.0
     # technically an extra for python<3.8, not worth losing noarch
-    - importlib-metadata >=3.4
+    - importlib-metadata >=3.7
 
 test:
   imports:
