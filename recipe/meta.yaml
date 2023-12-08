@@ -1,4 +1,4 @@
-{% set version = "3.0.1" %}
+{% set version = "3.0.10" %}
 
 package:
   name: jake
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jake/jake-{{ version }}.tar.gz
-  sha256: dd994ec27912f7672bf3048b99df72cf0bb9071840c1fb13e7d645932ca06718
+  sha256: 314cdb891a75f4187f400c051a13635f2aaa1132c62d37e791d873c3e87eaf84
 
 build:
   number: 0
@@ -32,7 +32,7 @@ requirements:
     - polling2 >=0.5.0,<0.6.0
     - pyfiglet >=0.7.6,<1.0.0
     - requests >=2.31.0,<3.0.0
-    - rich >=10.10.0,<11.0.0
+    - rich >=10.10.0
     # technically an extra for python<3.8, not worth losing noarch
     - importlib-metadata >=3.7
 
