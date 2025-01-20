@@ -5,27 +5,26 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/j/jake/jake-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/j/jake/jake-{{ version }}.tar.gz
   sha256: e46fa2def909744aedd9d63c6086fe84ff0551fd2073523811f4670b4684c30b
 
 build:
-  number: 0
+  number: 1
   noarch: python
-  entry_points:
-    - jake = jake.app:main
   script:
-    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
     - |-
       {{ PYTHON }} -c "(__import__('pathlib').Path(__import__('site').getsitepackages()[0]) / 'LICENSE').unlink()"
-
+  entry_points:
+    - jake = jake.app:main
 
 requirements:
   host:
     - pip
-    - python >=3.8
-    - poetry-core >=1.0.0
+    - python {{ python_min }}
+    - poetry-core >=1.0.0,<2
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     # these get translated from ~^ to concrete values in poetry-generated setup.py
     - cyclonedx-bom >=3.0.0,<4.0.0
     - ossindex-lib >=1.0.0,<2.0.0
@@ -33,10 +32,11 @@ requirements:
     - pyfiglet >=0.7.6,<1.0.0
     - requests >=2.32.3,<3.0.0
     - rich >=10.10.0
-    # technically an extra for python<3.8, not worth losing noarch
-    - importlib-metadata >=3.7
 
 test:
+  requires:
+    - pip
+    - python {{ python_min }}
   imports:
     - jake
     - jake.app
@@ -46,8 +46,6 @@ test:
     - jake --help
     # TODO: see https://github.com/sonatype-nexus-community/jake/issues/66
     - conda list --explicit | jake sbom -t CONDA
-  requires:
-    - pip
 
 about:
   home: https://github.com/sonatype-nexus-community/jake
