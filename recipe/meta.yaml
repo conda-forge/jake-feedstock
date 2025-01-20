@@ -32,8 +32,6 @@ requirements:
     - pyfiglet >=0.7.6,<1.0.0
     - requests >=2.32.3,<3.0.0
     - rich >=10.10.0
-    # technically an extra for python<3.8, not worth losing noarch
-    - importlib-metadata >=3.7
 
 test:
   requires:
