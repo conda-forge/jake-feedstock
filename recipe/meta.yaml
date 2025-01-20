@@ -5,11 +5,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/j/jake/jake-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/j/jake/jake-{{ version }}.tar.gz
   sha256: e46fa2def909744aedd9d63c6086fe84ff0551fd2073523811f4670b4684c30b
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - jake = jake.app:main
@@ -22,10 +22,10 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.8
+    - python {{ python_min }}
     - poetry-core >=1.0.0
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     # these get translated from ~^ to concrete values in poetry-generated setup.py
     - cyclonedx-bom >=3.0.0,<4.0.0
     - ossindex-lib >=1.0.0,<2.0.0
@@ -48,6 +48,7 @@ test:
     - conda list --explicit | jake sbom -t CONDA
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/sonatype-nexus-community/jake
