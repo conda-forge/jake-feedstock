@@ -3,11 +3,13 @@ About jake-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jake-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/sonatype-nexus-community/jake
+Home: https://pypi.org/project/jake
 
 Package license: Apache-2.0
 
 Summary: An OSS Index integration to check for vulnerabilities in your Conda environments
+
+Development: https://github.com/sonatype-nexus-community/jake
 
 Current build status
 ====================
