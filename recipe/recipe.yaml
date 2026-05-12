@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "3.1.0"
+  python_check_max: "3.14"
+
+package:
+  name: jake
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/j/jake/jake-${{ version }}.tar.gz
+  sha256: 5122b30cbb925f540519f3be53b2a7c641210e4b90294331656ef655825da87b
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+    - ${{ PYTHON }} -c "(__import__('pathlib').Path(__import__('site').getsitepackages()[0]) / 'LICENSE').unlink()"
+  python:
+    entry_points:
+      - jake = jake.app:main
+
+requirements:
+  host:
+    - pip
+    - poetry-core >=1.0.0,<2
+    - python ${{ python_min }}.*
+  run:
+    - python >=${{ python_min }}
+    # these get translated from ~^ to concrete values in poetry-generated setup.py
+    - cyclonedx-bom >=3.0.0,<4.0.0
+    - ossindex-lib >=1.0.0,<2.0.0
+    - polling2 >=0.5.0,<0.6.0
+    - pyfiglet >=0.8.post1,<2.0.0
+    - requests >=2.32.4,<3.0.0
+    - rich >=10.10.0
+    # some tight pin above needs `pkg_resources`
+    - setuptools <82
+
+tests:
+  - python:
+      imports:
+        - jake
+        - jake.app
+      pip_check: true
+      python_version:
+        - ${{ python_min }}
+        - ${{ python_check_max }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - jake --version
+      - jake --help
+      - conda list --explicit | jake sbom -t CONDA
+
+about:
+  summary: An OSS Index integration to check for vulnerabilities in your Conda environments
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://pypi.org/project/jake
+  repository: https://github.com/sonatype-nexus-community/jake
+
+extra:
+  recipe-maintainers:
+    - bollwyvl
