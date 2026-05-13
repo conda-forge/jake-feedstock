@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "3.1.0"
+  version: "4.0.0"
   python_check_max: "3.14"
 
 package:
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/j/jake/jake-${{ version }}.tar.gz
-  sha256: 5122b30cbb925f540519f3be53b2a7c641210e4b90294331656ef655825da87b
+  sha256: b2b5280370de7525e6af6c8bad6d29cdcf22d2e01e16bc6448eddc92ae11a4ae
 
 build:
   number: 0
