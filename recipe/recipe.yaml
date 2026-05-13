@@ -60,7 +60,9 @@ tests:
       - conda list --json     | ${{ jake_sbom }} --type=CONDA_JSON
 
 about:
-  summary: An OSS Index integration to check for vulnerabilities in your Conda environments
+  summary: |-
+    A Sonatype Guide and Lifecycle integration to check for vulnerabilities in
+    your Python environments
   license: Apache-2.0
   license_file: LICENSE
   homepage: https://pypi.org/project/jake
