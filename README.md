@@ -11,6 +11,8 @@ Summary: An OSS Index integration to check for vulnerabilities in your Conda env
 
 Development: https://github.com/sonatype-nexus-community/jake
 
+Documentation: https://jake.readthedocs.io/
+
 Current build status
 ====================
 
