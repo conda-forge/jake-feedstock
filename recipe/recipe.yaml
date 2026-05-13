@@ -4,6 +4,7 @@ schema_version: 1
 context:
   version: "4.0.0"
   python_check_max: "3.14"
+  jake_sbom: jake sbom --output-format=json
 
 package:
   name: jake
@@ -54,7 +55,9 @@ tests:
     script:
       - jake --version
       - jake --help
-      - conda list --explicit | jake sbom -t CONDA
+      -                         ${{ jake_sbom }} --type=ENV
+      - conda list --explicit | ${{ jake_sbom }} --type=CONDA
+      - conda list --json     | ${{ jake_sbom }} --type=CONDA_JSON
 
 about:
   summary: An OSS Index integration to check for vulnerabilities in your Conda environments
@@ -62,6 +65,7 @@ about:
   license_file: LICENSE
   homepage: https://pypi.org/project/jake
   repository: https://github.com/sonatype-nexus-community/jake
+  documentation: https://jake.readthedocs.io
 
 extra:
   recipe-maintainers:
