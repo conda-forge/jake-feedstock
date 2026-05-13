@@ -29,7 +29,7 @@ requirements:
     - poetry-core >=1.0.0
     - python ${{ python_min }}.*
   run:
-    - art >=6.5,<7.0
+    - ascii-art >=6.5,<7.0
     - certifi >=2024.7.4
     - cyclonedx-python-lib >=11.7.0,<12.0.0
     - python >=${{ python_min }}
