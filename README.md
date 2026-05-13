@@ -7,7 +7,8 @@ Home: https://pypi.org/project/jake
 
 Package license: Apache-2.0
 
-Summary: An OSS Index integration to check for vulnerabilities in your Conda environments
+Summary: A Sonatype Guide and Lifecycle integration to check for vulnerabilities in
+your Python environments
 
 Development: https://github.com/sonatype-nexus-community/jake
 
